@@ -1,0 +1,17 @@
+Step 1 : Create S3 buckets, s3-projectedp-source and  s3-projectedp-target.
+Step 2 : Create SNS (Simple Notification Service) topic,  sns-projectedp-topic.
+	SNS is messaging service that allows you to send notifications or messages to distributed systems, services, or users. It is used for pub/sub messaging, A2A messaging, A2P messaging.
+Step 3 : Create SQS (Simple Queue Service), sqs-projectedp-queue : arn:aws:sqs:us-east-1:854520327702:sqs-projectedp-queue.
+	SQS is message queuing service.
+	Subscribe SQS to the SNS topic.
+Step 4 : Create a Glue Job and IAM role. Glue job helps you automate the process of moving and transforming data.
+	IAM Role : An IAM Role (Identity and Access Management Role) is a set of permissions that AWS temporarily gives to a user, service, or application to do specific actions in your AWS account.
+Step 5 : Create a Lambda Function and modify an IAM role. AWS Lambda is a serverless compute service that lets you run code without managing servers.
+Step 6 : Create a s3 notification for SNS topic and SQS trigger in Lambda.
+Step 7 : Create a DB in Glue and Crawler.
+Step 8 : To trigger Crawler, create a lambda function and S3 notification on top of it with the target path. So once the file comes to target location, it will automatically loads into AWS Athena.
+Step 9 : Create SQS deadletter queue to old SQS queue.
+Step 10 : Create SNS for Pager Duty and create subscription with Pager Duty Integration URL through AWS cloud watch for ETL Lambda Failure.
+Step 11 : Integrate Pager Duty with Slack.
+Slack is a business communication and collaboration platform designed to help teams work together more efficiently. It replaces internal email and allows teams to communicate in real time, organize discussions by topics, and integrate with a wide range of tools.
+Step 12 : Create EventBridge Rule for Glue Failure.
